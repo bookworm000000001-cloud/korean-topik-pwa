@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="TOPIK I">
+<meta name="theme-color" content="#FFF8F3">
+<meta name="description" content="Learn Korean at TOPIK I level — Hangul, vocab, grammar, reading, listening, mock tests.">
+<link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' rx='38' fill='%23E89B9B'/><text x='90' y='118' font-family='-apple-system,sans-serif' font-size='100' font-weight='800' text-anchor='middle' fill='white'>가</text></svg>">
+<link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' rx='38' fill='%23E89B9B'/><text x='90' y='118' font-family='-apple-system,sans-serif' font-size='100' font-weight='800' text-anchor='middle' fill='white'>가</text></svg>">
+<title>TOPIK I · Korean</title>
+<style>
+:root{
+  --cream:#FFF8F3;
+  --paper:#FFFFFF;
+  --ink:#2B2A2A;
+  --ink-soft:#6B6B6B;
+  --line:#EFE6DD;
+  --pink:#F4C6C6;
+  --pink-deep:#E89B9B;
+  --blue:#C9D8F0;
+  --blue-deep:#8FA8E0;
+  --green:#C9E4D2;
+  --yellow:#F6E4B8;
+  --accent:#E89B9B;
+  --accent-soft:#FCEAEA;
+  --shadow:0 1px 3px rgba(0,0,0,0.04), 0 6px 24px rgba(232,155,155,0.08);
+  --radius:18px;
+  --radius-sm:12px;
+  --safe-top:env(safe-area-inset-top,0px);
+  --safe-bottom:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;height:100%}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",system-ui,sans-serif;
+  background:linear-gradient(180deg,#F5EFE9 0%, #FFF8F3 100%);
+  color:var(--ink);
+  font-size:16px;line-height:1.5;
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+  padding-top:var(--safe-top);
+  padding-bottom:calc(96px + var(--safe-bottom));
+  overscroll-behavior-y:none;
+}
+:root{--app-max:480px}
+.app{
+  max-width:var(--app-max);
+  margin:0 auto;
+  padding:0 16px;
+  min-height:100vh;
+}
+/* Top bar */
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 4px 10px;
+  position:sticky;top:0;z-index:50;
+  background:linear-gradient(180deg,rgba(255,248,243,0.95),rgba(255,248,243,0.7) 70%,transparent);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+}
+.topbar h1{font-size:20px;font-weight:700;letter-spacing:-0.02em;margin:0}
+.topbar .sub{font-size:11px;color:var(--ink-soft);font-weight:500}
+.streak-pill{
+  display:flex;align-items:center;gap:5px;
+  background:var(--accent-soft);color:var(--pink-deep);
+  padding:7px 12px;border-radius:999px;font-size:12px;font-weight:700;
+}
+.streak-pill svg{width:14px;height:14px}
+
+/* Cards */
+.card{
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:18px;
+  box-shadow:var(--shadow);
+  margin-bottom:14px;
+}
+.card-tight{padding:14px}
+.section-title{
+  font-size:13px;font-weight:700;color:var(--ink-soft);
+  text-transform:uppercase;letter-spacing:0.08em;
+  margin:18px 4px 10px;
+}
+.h-card{font-size:11px;font-weight:700;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.06em;margin:14px 2px 8px}
+
+/* Home dashboard */
+.greet{font-size:26px;font-weight:800;letter-spacing:-0.02em;margin:6px 0 2px}
+.greet-sub{color:var(--ink-soft);font-size:14px;margin-bottom:14px}
+.goal-bar{
+  height:8px;background:#F0E8E0;border-radius:999px;overflow:hidden;margin:10px 0 6px;
+}
+.goal-fill{
+  height:100%;background:linear-gradient(90deg,var(--pink-deep),var(--blue-deep));
+  border-radius:999px;transition:width .4s ease;
+}
+.goal-text{font-size:12px;color:var(--ink-soft);display:flex;justify-content:space-between}
+
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:6px 0 4px}
+.stat{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-sm);padding:14px 8px;text-align:center}
+.stat .num{font-size:22px;font-weight:800;letter-spacing:-0.02em}
+.stat .lbl{font-size:10px;color:var(--ink-soft);font-weight:600;text-transform:uppercase;letter-spacing:0.04em;margin-top:2px}
+
+/* Module grid (home) */
+.module-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px}
+.module{
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:18px 14px;text-align:left;
+  box-shadow:var(--shadow);
+  cursor:pointer;border:none;width:100%;
+  font-family:inherit;color:inherit;
+  transition:transform .12s;
+}
+.module:active{transform:scale(0.97)}
+.module .icon{
+  width:42px;height:42px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;margin-bottom:10px;
+}
+.module .name{font-size:15px;font-weight:700;letter-spacing:-0.01em}
+.module .desc{font-size:11px;color:var(--ink-soft);margin-top:2px}
+.icon-hangul{background:var(--accent-soft);color:var(--pink-deep)}
+.icon-vocab{background:#EAF1FC;color:var(--blue-deep)}
+.icon-grammar{background:#E9F5EF;color:#5BA67A}
+.icon-reading{background:#FBF0DC;color:#C68A1F}
+.icon-listening{background:#EFEAF5;color:#8E7BB8}
+.icon-mock{background:#FCEAEA;color:#C26666}
+
+/* Bottom tab bar */
+.tabbar{
+  position:fixed;left:0;right:0;bottom:0;z-index:100;
+  max-width:var(--app-max);margin:0 auto;
+  display:grid;grid-template-columns:repeat(5,1fr);
+  background:rgba(255,255,255,0.92);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-top:1px solid var(--line);
+  padding:8px 4px calc(8px + var(--safe-bottom));
+}
+.tab{
+  background:none;border:none;font-family:inherit;
+  display:flex;flex-direction:column;align-items:center;gap:3px;
+  color:var(--ink-soft);font-size:10px;font-weight:600;
+  padding:4px 0;
+}
+.tab svg{width:22px;height:22px}
+.tab.active{color:var(--pink-deep)}
+.tab:active{opacity:0.6}
+
+/* Buttons */
+.btn{
+  font-family:inherit;border:none;border-radius:14px;
+  padding:14px 18px;font-size:15px;font-weight:700;
+  cursor:pointer;transition:transform .12s;width:100%;
+}
+.btn:active{transform:scale(0.98)}
+.btn-primary{background:var(--ink);color:#fff}
+.btn-accent{background:var(--pink-deep);color:#fff}
+.btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn-soft{background:var(--accent-soft);color:var(--pink-deep)}
+.btn-row{display:flex;gap:10px}
+.btn-row .btn{flex:1}
+
+/* Hangul grid */
+.hg-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:8px 0}
+.hg-cell{
+  background:var(--paper);border:1px solid var(--line);
+  border-radius:14px;padding:12px 4px;text-align:center;cursor:pointer;
+  transition:transform .1s;
+}
+.hg-cell:active{transform:scale(0.94)}
+.hg-cell .letter{font-size:26px;font-weight:700;color:var(--ink)}
+.hg-cell .rom{font-size:10px;color:var(--ink-soft);margin-top:2px}
+.hg-cell .nm{font-size:9px;color:var(--pink-deep);font-weight:600;margin-top:1px}
+
+.chip-row{display:flex;gap:6px;overflow-x:auto;padding:4px 0 8px;-webkit-overflow-scrolling:touch}
+.chip-row::-webkit-scrollbar{display:none}
+.chip{
+  flex-shrink:0;background:var(--paper);border:1px solid var(--line);
+  padding:8px 14px;border-radius:999px;font-size:13px;font-weight:600;
+  cursor:pointer;color:var(--ink-soft);white-space:nowrap;
+}
+.chip.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+/* Modal / detail sheet */
+.sheet-backdrop{
+  position:fixed;inset:0;background:rgba(0,0,0,0.3);
+  z-index:200;display:none;align-items:flex-end;justify-content:center;
+}
+.sheet-backdrop.show{display:flex}
+.sheet{
+  background:var(--paper);
+  width:100%;max-width:var(--app-max);
+  border-radius:24px 24px 0 0;
+  padding:20px 20px calc(24px + var(--safe-bottom));
+  max-height:88vh;overflow-y:auto;
+  animation:slideUp .25s ease;
+}
+@keyframes slideUp{from{transform:translateY(40px);opacity:.6}to{transform:translateY(0);opacity:1}}
+.sheet .grab{width:40px;height:4px;background:var(--line);border-radius:999px;margin:0 auto 14px}
+.sheet h2{font-size:22px;font-weight:800;margin:0 0 4px;letter-spacing:-0.02em}
+.sheet .big-letter{font-size:72px;font-weight:800;text-align:center;margin:18px 0 6px;letter-spacing:-0.04em}
+.sheet .big-rom{text-align:center;font-size:16px;color:var(--ink-soft);margin-bottom:6px}
+.sheet .meta-row{text-align:center;font-size:13px;color:var(--pink-deep);font-weight:600;margin-bottom:14px}
+
+/* Flashcard */
+.flashcard{
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+  padding:32px 20px;text-align:center;box-shadow:var(--shadow);
+  min-height:200px;display:flex;flex-direction:column;justify-content:center;
+  cursor:pointer;transition:transform .15s;
+}
+.flashcard:active{transform:scale(0.98)}
+.flashcard .ko{font-size:42px;font-weight:800;letter-spacing:-0.03em;color:var(--ink)}
+.flashcard .rom{font-size:14px;color:var(--ink-soft);margin-top:6px;font-style:italic}
+.flashcard .en{font-size:20px;font-weight:700;margin-top:14px;color:var(--pink-deep)}
+.flashcard .hint{font-size:11px;color:var(--ink-soft);margin-top:18px}
+.flashcard .tap-to-flip{position:absolute;top:14px;right:14px;font-size:10px;color:var(--ink-soft);font-weight:600;text-transform:uppercase;letter-spacing:0.06em}
+
+/* Quiz */
+.quiz-q{font-size:17px;font-weight:700;margin:4px 0 14px}
+.quiz-choices{display:flex;flex-direction:column;gap:10px}
+.choice{
+  background:var(--paper);border:2px solid var(--line);border-radius:14px;
+  padding:14px 16px;font-size:15px;font-weight:600;cursor:pointer;text-align:left;
+  font-family:inherit;color:var(--ink);transition:all .15s;
+}
+.choice:active{transform:scale(0.98)}
+.choice.correct{border-color:#5BA67A;background:#E9F5EF}
+.choice.wrong{border-color:#C26666;background:#FCEAEA}
+.choice.disabled{pointer-events:none}
+
+.progress{height:6px;background:#F0E8E0;border-radius:999px;overflow:hidden;margin:10px 0 16px}
+.progress-fill{height:100%;background:var(--pink-deep);border-radius:999px;transition:width .3s}
+
+/* Reading / listening player */
+.player{
+  background:linear-gradient(135deg,var(--accent-soft),#EAF1FC);
+  border-radius:var(--radius);padding:20px;text-align:center;margin-bottom:14px;
+}
+.player .play-btn{
+  width:64px;height:64px;border-radius:50%;background:var(--ink);color:#fff;
+  border:none;font-size:26px;cursor:pointer;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;
+  transition:transform .12s;
+}
+.player .play-btn:active{transform:scale(0.94)}
+.player .speed-row{display:flex;gap:8px;justify-content:center;align-items:center;margin-top:10px}
+.player .speed-row button{
+  background:rgba(255,255,255,0.6);border:none;border-radius:999px;
+  padding:6px 12px;font-size:11px;font-weight:700;cursor:pointer;color:var(--ink-soft);
+  font-family:inherit;
+}
+.player .speed-row button.active{background:var(--ink);color:#fff}
+.transcript{
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-sm);
+  padding:14px 16px;font-size:15px;line-height:1.7;white-space:pre-line;
+  margin-bottom:14px;
+}
+.transcript .speaker{color:var(--pink-deep);font-weight:700}
+
+/* Mock test */
+.mock-section{font-size:12px;font-weight:700;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.06em;margin:18px 0 6px}
+.score-card{
+  background:linear-gradient(135deg,var(--accent-soft),#EAF1FC);
+  border-radius:var(--radius);padding:24px;text-align:center;margin-bottom:14px;
+}
+.score-card .big{font-size:48px;font-weight:800;letter-spacing:-0.03em;color:var(--pink-deep)}
+.score-card .lbl{font-size:13px;color:var(--ink-soft);font-weight:600}
+.score-card .grade{display:inline-block;background:#fff;color:var(--ink);padding:6px 14px;border-radius:999px;font-size:12px;font-weight:700;margin-top:10px}
+
+/* Settings */
+.setting-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.setting-row:last-child{border-bottom:none}
+.setting-row .lbl{font-size:15px;font-weight:600}
+.setting-row .desc{font-size:12px;color:var(--ink-soft)}
+.switch{position:relative;width:48px;height:28px;background:#E0D8CF;border-radius:999px;cursor:pointer;transition:.2s;flex-shrink:0}
+.switch.on{background:var(--pink-deep)}
+.switch .dot{position:absolute;top:3px;left:3px;width:22px;height:22px;background:#fff;border-radius:50%;transition:.2s}
+.switch.on .dot{transform:translateX(20px)}
+
+/* Toast */
+.toast{
+  position:fixed;left:50%;bottom:calc(90px + var(--safe-bottom));transform:translateX(-50%);
+  background:var(--ink);color:#fff;padding:12px 20px;border-radius:999px;
+  font-size:13px;font-weight:600;z-index:300;opacity:0;transition:opacity .25s,transform .25s;
+  pointer-events:none;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(-4px)}
+
+/* Hide */
+.hidden{display:none!important}
+
+/* Korean text font (system fallback) */
+.ko{font-family:"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif}
+
+/* List */
+.list-item{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 0;border-bottom:1px solid var(--line);cursor:pointer;
+}
+.list-item:last-child{border-bottom:none}
+.list-item .title{font-size:15px;font-weight:600}
+.list-item .sub{font-size:12px;color:var(--ink-soft);margin-top:2px}
+.list-item .chev{color:var(--ink-soft);font-size:18px}
+.list-item:active{background:rgba(0,0,0,0.02)}
+
+.empty{padding:40px 20px;text-align:center;color:var(--ink-soft);font-size:14px}
+
+.kbd-tag{display:inline-block;background:var(--accent-soft);color:var(--pink-deep);padding:3px 8px;border-radius:6px;font-size:11px;font-weight:700;margin-right:4px}
+.grammar-pattern{background:#FBF0DC;color:#8B6914;padding:3px 8px;border-radius:6px;font-size:12px;font-weight:600;display:inline-block;margin:6px 0}
+.grammar-ex{background:var(--accent-soft);border-radius:10px;padding:10px 12px;font-size:14px;margin:10px 0}
+.grammar-ex .ko{font-weight:700;font-size:15px}
+.grammar-ex .tr{color:var(--ink-soft);font-size:13px;margin-top:3px}
+
+.hint-pill{display:inline-block;background:#EAF1FC;color:var(--blue-deep);padding:4px 10px;border-radius:999px;font-size:11px;font-weight:600}
+</style>
+</head>
+<body>
+<div class="app" id="app"></div>
+<div class="sheet-backdrop" id="sheetBackdrop">
+  <div class="sheet" id="sheet"></div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+// ===== DATA =====
+const DATA = {"HANGUL":{"consonants":[{"letter":"ㄱ","name":"giyeok","roman":"g/k","sound":"like k at start, g between vowels"},{"letter":"ㄴ","name":"nieun","roman":"n","sound":"like n in no"},{"letter":"ㄷ","name":"digeut","roman":"d/t","sound":"like t at start, d between vowels"},{"letter":"ㄹ","name":"rieul","roman":"r/l","sound":"flap r, like dd in ladder"},{"letter":"ㅁ","name":"mieum","roman":"m","sound":"like m in man"},{"letter":"ㅂ","name":"bieup","roman":"b/p","sound":"like p at start, b between vowels"},{"letter":"ㅅ","name":"siot","roman":"s","sound":"like s, sh before i/y"},{"letter":"ㅇ","name":"ieung","roman":"(ng)","sound":"silent at start, ng at end"},{"letter":"ㅈ","name":"jieut","roman":"j","sound":"like j, ch before i/y"},{"letter":"ㅊ","name":"chieut","roman":"ch'","sound":"aspirated ch, like chip"},{"letter":"ㅋ","name":"kieuk","roman":"k'","sound":"aspirated k, like kite"},{"letter":"ㅌ","name":"tieut","roman":"t'","sound":"aspirated t, like top"},{"letter":"ㅍ","name":"pieup","roman":"p'","sound":"aspirated p, like pen"},{"letter":"ㅎ","name":"hieut","roman":"h","sound":"like h in hat"}],"vowels":[{"letter":"ㅏ","name":"a","sound":"like a in father"},{"letter":"ㅑ","name":"ya","sound":"like ya in yard"},{"letter":"ㅓ","name":"eo","sound":"like u in up"},{"letter":"ㅕ","name":"yeo","sound":"like yo in young"},{"letter":"ㅗ","name":"o","sound":"like o in go (shorter)"},{"letter":"ㅛ","name":"yo","sound":"like yo in yodel"},{"letter":"ㅜ","name":"u","sound":"like oo in moon"},{"letter":"ㅠ","name":"yu","sound":"like yu in you"},{"letter":"ㅡ","name":"eu","sound":"like eu inseur (no English eq)"},{"letter":"ㅣ","name":"i","sound":"like ee in see"},{"letter":"ㅐ","name":"ae","sound":"like e in pet"},{"letter":"ㅒ","name":"yae","sound":"like ye in yes"},{"letter":"ㅔ","name":"e","sound":"like e in pet (same as ae today)"},{"letter":"ㅖ","name":"ye","sound":"like ye in yes"}],"tensed":[{"letter":"ㄲ","name":"ssang-giyeok","sound":"tense kk, no puff"},{"letter":"ㄸ","name":"ssang-digeut","sound":"tense tt, no puff"},{"letter":"ㅃ","name":"ssang-bieup","sound":"tense pp, no puff"},{"letter":"ㅆ","name":"ssang-siot","sound":"tense ss"},{"letter":"ㅉ","name":"ssang-jieut","sound":"tense jj, no puff"}],"batchim":[{"end":"ㄱ","sound":"k","ex":"국 (guk = soup)"},{"end":"ㄴ","sound":"n","ex":"눈 (nun = eye/snow)"},{"end":"ㄷ","sound":"t","ex":"밭 (bat = field)"},{"end":"ㄹ","sound":"l","ex":"달 (dal = moon)"},{"end":"ㅁ","sound":"m","ex":"감 (gam = persimmon)"},{"end":"ㅂ","sound":"p","ex":"밥 (bap = rice)"},{"end":"ㅇ","sound":"ng","ex":"강 (gang = river)"}],"syllablesIntro":[{"block":"가","parts":"ㄱ + ㅏ","meaning":"go"},{"block":"나","parts":"ㄴ + ㅏ","meaning":"I (poetic)"},{"block":"다","parts":"ㄷ + ㅏ","meaning":"all"},{"block":"라","parts":"ㄹ + ㅏ","meaning":"la (musical)"},{"block":"마","parts":"ㅁ + ㅏ","meaning":"horse"},{"block":"사","parts":"ㅅ + ㅏ","meaning":"person/purchase"},{"block":"아","parts":"ㅇ + ㅏ","meaning":"oh / child suffix"},{"block":"자","parts":"ㅈ + ㅏ","meaning":"ruler (sleep)"},{"block":"하","parts":"ㅎ + ㅏ","meaning":"do"},{"block":"안","parts":"ㅇ + ㅏ + ㄴ","meaning":"inside"},{"block":"학","parts":"ㅎ + ㅏ + ㄱ","meaning":"study/school"},{"block":"한","parts":"ㅎ + ㅏ + ㄴ","meaning":"Korean / one"}]},"VOCAB":[{"word":"안녕하세요","roman":"annyeonghaseyo","en":"Hello","cat":"Greetings"},{"word":"감사합니다","roman":"gamsahamnida","en":"Thank you","cat":"Greetings"},{"word":"죄송합니다","roman":"joesonghamnida","en":"I'm sorry","cat":"Greetings"},{"word":"안녕히 가세요","roman":"annyeonghi gaseyo","en":"Goodbye (to leaver)","cat":"Greetings"},{"word":"안녕히 계세요","roman":"annyeonghi gyeseyo","en":"Goodbye (to stayer)","cat":"Greetings"},{"word":"네","roman":"ne","en":"Yes","cat":"Greetings"},{"word":"아니요","roman":"aniyo","en":"No","cat":"Greetings"},{"word":"처음 뵙겠습니다","roman":"cheoeum boepgetseumnida","en":"Nice to meet you","cat":"Greetings"},{"word":"안녕히 주무세요","roman":"annyeonghi jumuseyo","en":"Good night (resp.)","cat":"Greetings"},{"word":"잘 부탁드립니다","roman":"jal butakdeurimnida","en":"Please take care of me","cat":"Greetings"},{"word":"하나","roman":"hana","en":"one","cat":"Numbers"},{"word":"둘","roman":"dul","en":"two","cat":"Numbers"},{"word":"셋","roman":"set","en":"three","cat":"Numbers"},{"word":"넷","roman":"net","en":"four","cat":"Numbers"},{"word":"다섯","roman":"daseot","en":"five","cat":"Numbers"},{"word":"시","roman":"si","en":"o'clock","cat":"Numbers"},{"word":"분","roman":"bun","en":"minute / polite person","cat":"Numbers"},{"word":"오늘","roman":"oneul","en":"today","cat":"Time"},{"word":"내일","roman":"naeil","en":"tomorrow","cat":"Time"},{"word":"어제","roman":"eoje","en":"yesterday","cat":"Time"},{"word":"지금","roman":"jigeum","en":"now","cat":"Time"},{"word":"이따가","roman":"ittaga","en":"later","cat":"Time"},{"word":"가족","roman":"gajok","en":"family","cat":"Family"},{"word":"아버지","roman":"abeoji","en":"father (resp.)","cat":"Family"},{"word":"어머니","roman":"eomeoni","en":"mother (resp.)","cat":"Family"},{"word":"형","roman":"hyeong","en":"older brother (m)","cat":"Family"},{"word":"누나","roman":"nuna","en":"older sister (m)","cat":"Family"},{"word":"오빠","roman":"oppa","en":"older brother (f)","cat":"Family"},{"word":"언니","roman":"eonni","en":"older sister (f)","cat":"Family"},{"word":"동생","roman":"dongsaeng","en":"younger sibling","cat":"Family"},{"word":"할아버지","roman":"harabeoji","en":"grandfather","cat":"Family"},{"word":"할머니","roman":"halmeoni","en":"grandmother","cat":"Family"},{"word":"밥","roman":"bap","en":"rice / meal","cat":"Food"},{"word":"물","roman":"mul","en":"water","cat":"Food"},{"word":"김치","roman":"gimchi","en":"kimchi","cat":"Food"},{"word":"커피","roman":"keopi","en":"coffee","cat":"Food"},{"word":"차","roman":"cha","en":"tea / car","cat":"Food"},{"word":"과일","roman":"gwail","en":"fruit","cat":"Food"},{"word":"고기","roman":"gogi","en":"meat","cat":"Food"},{"word":"빵","roman":"ppang","en":"bread","cat":"Food"},{"word":"맛있다","roman":"masitda","en":"delicious","cat":"Food"},{"word":"맵다","roman":"mapda","en":"spicy","cat":"Food"},{"word":"달다","roman":"dalda","en":"sweet","cat":"Food"},{"word":"배고프다","roman":"baegopeuda","en":"hungry","cat":"Food"},{"word":"학교","roman":"hakgyo","en":"school","cat":"Places"},{"word":"집","roman":"jip","en":"home / house","cat":"Places"},{"word":"회사","roman":"hoesa","en":"company","cat":"Places"},{"word":"식당","roman":"sikdang","en":"restaurant","cat":"Places"},{"word":"병원","roman":"byeongwon","en":"hospital","cat":"Places"},{"word":"은행","roman":"eunhaeng","en":"bank","cat":"Places"},{"word":"가게","roman":"gage","en":"shop","cat":"Places"},{"word":"공원","roman":"gongwon","en":"park","cat":"Places"},{"word":"방","roman":"bang","en":"room","cat":"Places"},{"word":"도서관","roman":"doseogwan","en":"library","cat":"Places"},{"word":"가다","roman":"gada","en":"to go","cat":"Verbs"},{"word":"오다","roman":"oda","en":"to come","cat":"Verbs"},{"word":"보다","roman":"boda","en":"to see / watch","cat":"Verbs"},{"word":"듣다","roman":"deutda","en":"to listen / hear","cat":"Verbs"},{"word":"먹다","roman":"meokda","en":"to eat","cat":"Verbs"},{"word":"마시다","roman":"masida","en":"to drink","cat":"Verbs"},{"word":"사다","roman":"sada","en":"to buy","cat":"Verbs"},{"word":"공부하다","roman":"gongbuhada","en":"to study","cat":"Verbs"},{"word":"쉬다","roman":"swida","en":"to rest","cat":"Verbs"},{"word":"자다","roman":"jada","en":"to sleep","cat":"Verbs"},{"word":"일어나다","roman":"ireonada","en":"to get up","cat":"Verbs"},{"word":"만나다","roman":"mannada","en":"to meet","cat":"Verbs"},{"word":"읽다","roman":"ikda","en":"to read","cat":"Verbs"},{"word":"쓰다","roman":"sseuda","en":"to write / use","cat":"Verbs"},{"word":"하다","roman":"hada","en":"to do","cat":"Verbs"},{"word":"좋다","roman":"jota","en":"good","cat":"Adjectives"},{"word":"나쁘다","roman":"nappeuda","en":"bad","cat":"Adjectives"},{"word":"크다","roman":"keuda","en":"big","cat":"Adjectives"},{"word":"작다","roman":"jakda","en":"small","cat":"Adjectives"},{"word":"많다","roman":"manta","en":"many / much","cat":"Adjectives"},{"word":"적다","roman":"jeokda","en":"few / little","cat":"Adjectives"},{"word":"예쁘다","roman":"yeppeuda","en":"pretty","cat":"Adjectives"},{"word":"빠르다","roman":"ppareuda","en":"fast","cat":"Adjectives"},{"word":"느리다","roman":"neurida","en":"slow","cat":"Adjectives"},{"word":"재미있다","roman":"jaemiitda","en":"fun / interesting","cat":"Adjectives"},{"word":"친구","roman":"chingu","en":"friend","cat":"Daily"},{"word":"선생님","roman":"seonsaengnim","en":"teacher","cat":"Daily"},{"word":"학생","roman":"haksaeng","en":"student","cat":"Daily"},{"word":"이름","roman":"ireum","en":"name","cat":"Daily"},{"word":"나라","roman":"nara","en":"country","cat":"Daily"},{"word":"돈","roman":"don","en":"money","cat":"Daily"},{"word":"시간","roman":"sigan","en":"time","cat":"Daily"},{"word":"날씨","roman":"nalssi","en":"weather","cat":"Daily"},{"word":"방학","roman":"banghak","en":"school break","cat":"Daily"},{"word":"여행","roman":"yeohaeng","en":"trip / travel","cat":"Daily"},{"word":"선물","roman":"seonmul","en":"gift","cat":"Daily"},{"word":"사진","roman":"sajin","en":"photo","cat":"Daily"}],"GRAMMAR":[{"id":1,"point":"은/는 (topic)","pattern":"Noun + 은/는","meaning":"Marks the topic (as for ~)","ex":"저는 학생이에요. (As for me, I am a student.)","rule":"은 after consonant-final, 는 after vowel-final"},{"id":2,"point":"이/가 (subject)","pattern":"Noun + 이/가","meaning":"Marks the subject of the clause","ex":"비가 와요. (Rain is falling.)","rule":"이 after consonant-final, 가 after vowel-final"},{"id":3,"point":"을/를 (object)","pattern":"Noun + 을/를","meaning":"Marks the direct object","ex":"밥을 먹어요. (I eat a meal.)","rule":"을 after consonant-final, 를 after vowel-final"},{"id":4,"point":"의 (possessive)","pattern":"Noun + 의","meaning":"Possession (of)","ex":"나의 책 (my book)","rule":"Often shortened to just ㅖ (e.g. 내)"},{"id":5,"point":"에 (location/time)","pattern":"Noun + 에","meaning":"At/in/on (place or time)","ex":"학교에 있어요. (I am at school.)","rule":"Also marks destination of 가다/오다"},{"id":6,"point":"에서 (origin)","pattern":"Place + 에서","meaning":"From / doing at a place","ex":"도서관에서 공부해요. (I study at the library.)","rule":"에 + 서 = at this place"},{"id":7,"point":"으로/로 (means/dir.)","pattern":"Noun + 으로/로","meaning":"By means of / toward","ex":"버스로 가요. (I go by bus.)","rule":"으로 after consonant (except ㄹ), 로 after vowel or ㄹ"},{"id":8,"point":"하고 / 과/와 (and/with)","pattern":"N + 하고 / 과/와","meaning":"And / with (nouns)","ex":"사과하고 바나나 (apple and banana)","rule":"과 after consonant-final, 와 after vowel-final"},{"id":9,"point":"이에요/예요 (is)","pattern":"Noun + 이에요/예요","meaning":"Copula \"is\" (polite)","ex":"물이에요. (It is water.) / 사과예요. (It is an apple.)","rule":"이에요 after consonant, 예요 after vowel"},{"id":10,"point":"아요/어요 (polite)","pattern":"Verb/Adj stem + 아요/어요","meaning":"Polite present/future","ex":"가다 → 가요 (go) / 먹다 → 먹어요 (eat)","rule":"아요 if stem ends in ㅏ/ㅗ, else 어요; 하 → 해요"},{"id":11,"point":"습니다/ㅂ니다 (formal)","pattern":"Stem + 습니다/ㅂ니다","meaning":"Formal polite (declarative)","ex":"갑니다. (I go.) / 있습니다. (There is.)","rule":"습니다 after consonant, ㅂ니다 after vowel"},{"id":12,"point":"지 않다 (negation)","pattern":"Stem + 지 않다","meaning":"Do not / is not (verb negation)","ex":"먹지 않아요. (I do not eat.)","rule":"Alternative: 안 + verb (안 먹어요)"},{"id":13,"point":"안 (negation)","pattern":"안 + Verb/Adj","meaning":"Do not (short negation)","ex":"안 가요. (I do not go.)","rule":"Only with 하다 verbs: 안 공부해요, NOT 공부안해요"},{"id":14,"point":"못 (cannot)","pattern":"못 + Verb","meaning":"Cannot do (involuntary)","ex":"못 가요. (I cannot go.)","rule":"Different from 안 (deliberate) — 못 implies inability"},{"id":15,"point":"고 싶다 (want to)","pattern":"Stem + 고 싶다","meaning":"Want to do","ex":"가고 싶어요. (I want to go.)","rule":"With 하다 verbs: 공부하고 싶어요"},{"id":16,"point":"을/ㄹ 수 있다 (can)","pattern":"Stem + 을/ㄹ 수 있다","meaning":"Can do","ex":"한국어를 할 수 있어요. (I can speak Korean.)","rule":"ㄹ 수 after vowel/ㄹ, 을 수 after consonant"},{"id":17,"point":"을/ㄹ 수 없다 (cannot)","pattern":"Stem + 을/ㄹ 수 없다","meaning":"Cannot do","ex":"못 갈 수 없어요? — 갈 수 없어요. (I cannot go.)","rule":"Negative of 수 있다"},{"id":18,"point":"아/어야 하다 (must)","pattern":"Stem + 아/어야 하다","meaning":"Must / have to","ex":"공부해야 해요. (I must study.)","rule":"아야 after ㅏ/ㅗ stems, 어야 otherwise"},{"id":19,"point":"아/어도 되다 (may)","pattern":"Stem + 아/어도 되다","meaning":"May / it is ok to","ex":"앉아도 돼요? (May I sit?)","rule":"Permission pattern"},{"id":20,"point":"을/ㄹ 거예요 (future)","pattern":"Stem + 을/ㄹ 거예요","meaning":"Will / be going to","ex":"내일 갈 거예요. (I will go tomorrow.)","rule":"ㄹ 거예요 after vowel/ㄹ, 을 거예요 after consonant"},{"id":21,"point":"았/었- (past)","pattern":"Stem + 았/었어요","meaning":"Past tense","ex":"먹었어요. (I ate.) / 갔어요. (I went.)","rule":"았 after ㅏ/ㅗ stems, 었 otherwise"},{"id":22,"point":"고 (and then)","pattern":"Stem + 고","meaning":"And then (sequence)","ex":"밥 먹고 가요. (I eat and then go.)","rule":"Shows order of actions"},{"id":23,"point":"지만 (but)","pattern":"Clause + 지만","meaning":"But / however","ex":"춥지만 행복해요. (It is cold but I am happy.)","rule":"Attaches to stem"},{"id":24,"point":"어서/아서 (because)","pattern":"Stem + 아서/어서","meaning":"Because / so (reason)","ex":"바빠서 못 가요. (I am busy so I cannot go.)","rule":"Cannot be past tense on its own stem"},{"id":25,"point":"려고 (in order to)","pattern":"Stem + 려고","meaning":"In order to (intention)","ex":"공부하려고 도서관에 가요. (I go to the library to study.)","rule":"Used with action verbs"},{"id":26,"point":"면/으면 (if)","pattern":"Stem + (으)면","meaning":"If / when","ex":"비가 오면 안 가요. (If it rains, I will not go.)","rule":"으면 after consonant-final, 면 after vowel"},{"id":27,"point":"은/는 것 (noun phrase)","pattern":"Stem + 은/는 것","meaning":"Doing ~ (gerund)","ex":"요리하는 것을 좋아해요. (I like cooking.)","rule":"는 것 after verbs, 은 것 after adjectives"},{"id":28,"point":"보다 (comparison)","pattern":"N1 보다 N2","meaning":"N2 more than N1","ex":"사과보다 바나나를 좋아해요. (I like bananas more than apples.)","rule":"Often paired with 더 (more)"},{"id":29,"point":"처럼/같이 (like)","pattern":"Noun + 처럼/같이","meaning":"Like / as ~","ex":"천사처럼 예뻐요. (Pretty like an angel.)","rule":"Noun comparison particle"},{"id":30,"point":"N(으)로 (material)","pattern":"Noun + (으)로","meaning":"Made of / with material","ex":"나무로 만들었어요. (Made of wood.)","rule":"Same form as means/direction usage"}],"READING":[{"title":"Self-Introduction","text":"안녕하세요. 저는 수진입니다. 저는 학생이에요. 한국어를 공부해요. 제 친구는 영국 사람이에요. 우리는 매일 도서관에서 만나요.","en":"Hello. I am Sujin. I am a student. I study Korean. My friend is British. We meet at the library every day.","questions":[{"q":"Who is Sujin?","choices":["A teacher","A student","A doctor"],"answer":1},{"q":"Where do they meet?","choices":["At a cafe","At a park","At the library"],"answer":2}]},{"title":"At the Restaurant","text":"점심에 친구하고 식당에 갔어요. 불고기를 먹었어요. 맛있었어요. 그리고 물을 마셨어요. 음식값이 싸요. 다음에 또 올 거예요.","en":"At lunch I went to a restaurant with a friend. I ate bulgogi. It was delicious. And I drank water. The food is cheap. I will come again next time.","questions":[{"q":"What did the writer eat?","choices":["Kimchi","Bulgogi","Rice only"],"answer":1},{"q":"Will they go again?","choices":["Yes","No","Doesn't say"],"answer":0}]},{"title":"My Family","text":"우리 가족은 네 명이에요. 아버지, 어머니, 형, 그리고 저예요. 아버지는 회사에 다니세요. 어머니는 선생님이세요. 형은 의사예요. 저는 학생이에요.","en":"My family has four members: father, mother, older brother, and me. Father works at a company. Mother is a teacher. Older brother is a doctor. I am a student.","questions":[{"q":"How many family members?","choices":["3","4","5"],"answer":1},{"q":"What is the mother's job?","choices":["Doctor","Teacher","Office worker"],"answer":1}]},{"title":"Weekend Plan","text":"주말에 친구와 공원에 갈 거예요. 날씨가 좋을 거예요. 우리는 사진을 많이 찍을 거예요. 점심은 김밥을 먹어요. 저녁에 집에 올 거예요.","en":"On the weekend I will go to the park with a friend. The weather will be good. We will take many photos. For lunch we eat gimbap. We will come home in the evening.","questions":[{"q":"Where will they go?","choices":["School","The park","Hospital"],"answer":1},{"q":"What will they eat for lunch?","choices":["Gimbap","Bulgogi","Bread"],"answer":0}]},{"title":"Tomorrow","text":"내일은 친구 생일이에요. 그래서 선물을 샀어요. 케이크도 샀어요. 저녁에 같이 식당에서 저녁을 먹을 거예요. 친구가 아주 좋아할 거예요.","en":"Tomorrow is my friend's birthday. So I bought a present. I also bought a cake. In the evening we will eat dinner together at a restaurant. My friend will be very happy.","questions":[{"q":"What is tomorrow?","choices":["Friend's birthday","A holiday","School day"],"answer":0},{"q":"What did the writer buy?","choices":["Only a present","Only a cake","Present and cake"],"answer":2}]}],"LISTENING":[{"title":"Greeting at School","transcript":"수진: 안녕하세요! 저는 수진이에요.\n민준: 안녕하세요, 수진 씨. 저는 민준이에요. 처음 뵙겠습니다.\n수진: 네, 잘 부탁드립니다.","en":"Sujin: Hello! I am Sujin.\nMinjun: Hello, Sujin. I am Minjun. Nice to meet you.\nSujin: Yes, please take care of me.","questions":[{"q":"What is the man's name?","choices":["Sujin","Minjun","Minsu"],"answer":1},{"q":"Is this their first meeting?","choices":["Yes","No","Not stated"],"answer":0}]},{"title":"Ordering Coffee","transcript":"점원: 어서 오세요. 뭐 드릴까요?\n손님: 아메리카노 한 잔 주세요.\n점원: 사이즈는 어떻게 해 드릴까요?\n손님: 큰 것으로 주세요.","en":"Clerk: Welcome. What can I get you?\nCustomer: One Americano, please.\nClerk: What size?\nCustomer: A large one, please.","questions":[{"q":"What did the customer order?","choices":["Latte","Americano","Tea"],"answer":1},{"q":"What size?","choices":["Small","Medium","Large"],"answer":2}]},{"title":"Asking the Time","transcript":"수진: 민준 씨, 지금 몇 시예요?\n민준: 세 시 십 분이에요.\n수진: 아, 감사합니다. 이따가 다시 만나요.","en":"Sujin: Minjun, what time is it now?\nMinjun: 3:10.\nSujin: Ah, thank you. Let us meet again later.","questions":[{"q":"What time is it?","choices":["3:00","3:10","3:30"],"answer":1},{"q":"What will they do later?","choices":["Meet again","Eat","Sleep"],"answer":0}]},{"title":"Buying a Gift","transcript":"손님: 이 선물 얼마예요?\n점원: 오천 원이에요.\n손님: 너무 비싸요. 조금만 깎아 주세요.\n점원: 미안하지만 안 돼요.","en":"Customer: How much is this gift?\nClerk: 5,000 won.\nCustomer: Too expensive. Please lower the price a bit.\nClerk: I am sorry, but I cannot.","questions":[{"q":"How much is the gift?","choices":["5,000 won","50,000 won","500 won"],"answer":0},{"q":"Did they get a discount?","choices":["Yes","No","Maybe"],"answer":1}]},{"title":"Weekend Plan","transcript":"수진: 주말에 뭐 할 거예요?\n민준: 친구하고 영화를 볼 거예요. 수진 씨는요?\n수진: 저는 집에서 쉴 거예요.","en":"Sujin: What will you do on the weekend?\nMinjun: I will watch a movie with a friend. And you?\nSujin: I will rest at home.","questions":[{"q":"What will Minjun do?","choices":["Rest","Watch a movie","Study"],"answer":1},{"q":"Where will Sujin rest?","choices":["At home","At school","At a cafe"],"answer":0}]},{"title":"Asking Directions","transcript":"손님: 실례합니다. 역이 어디예요?\n행인: 저쪽에 있어요. 쭉 가시면 오른쪽에 있어요.\n손님: 얼마나 걸려요?\n행인: 오 분쯤 걸려요.","en":"Customer: Excuse me. Where is the station?\nPasserby: Over there. Go straight and it is on your right.\nCustomer: How long does it take?\nPasserby: About five minutes.","questions":[{"q":"What is the person looking for?","choices":["Bank","Station","School"],"answer":1},{"q":"How long does it take?","choices":["5 min","15 min","50 min"],"answer":0}]}],"MOCK":{"vocabGrammar":[{"q":"Choose the opposite of 많다.","choices":["적다","크다","좋다","빠르다"],"answer":0},{"q":"Fill in: 저는 학교___ 가요.","choices":["이","를","에","은"],"answer":2},{"q":"Choose the polite form of 먹다.","choices":["먹어요","먹다","먹고","먹으세요"],"answer":0},{"q":"Fill in: 비가 ___ 못 가요.","choices":["와도","와서","오면","오려고"],"answer":1},{"q":"Choose: 이것은 사과___ 못 먹어요.","choices":["하고","보다","처럼","이"],"answer":1},{"q":"Opposite of 크다?","choices":["작다","많다","느리다","예쁘다"],"answer":0},{"q":"Fill in: 저는 한국어___ 공부해요.","choices":["를","에","는","과"],"answer":0},{"q":"Polite past of 가다?","choices":["갔어요","가요","갈 거예요","가세요"],"answer":0},{"q":"Fill in: 친구___ 만나요.","choices":["를","이","에서","로"],"answer":0},{"q":"Future of 먹다?","choices":["먹었어요","먹을 거예요","먹어요","먹지 않아요"],"answer":1}],"reading":[{"text":"저는 매일 아침 7시에 일어나요. 8시에 아침을 먹어요. 9시에 학교에 가요. 오후 5시에 집에 와요. 저녁에 숙제를 해요.","q":"What does the writer do at 9?","choices":["Eat breakfast","Go to school","Come home","Do homework"],"answer":1},{"text":"우리 가게는 과일을 팔아요. 사과, 바나나, 포도가 있어요. 오늘은 포도가 아주 싸요. 천 원이에요. 빨리 오세요.","q":"What is cheap today?","choices":["Apple","Banana","Grape","All fruit"],"answer":2},{"text":"내일은 한국어 시험이 있어요. 그래서 오늘 밤에 도서관에서 공부할 거예요. 친구하고 같이 공부할 거예요.","q":"Why will the writer study tonight?","choices":["For a party","For a test","For fun","No reason"],"answer":1}],"listening":[{"transcript":"수진: 민준 씨, 어제 뭐 했어요?\n민준: 친구하고 영화관에 갔어요.\n수진: 영화가 재미있었어요?\n민준: 네, 아주 재미있었어요.","q":"Where did Minjun go yesterday?","choices":["To a library","To a cinema","To a park"],"answer":1},{"transcript":"점원: 뭐 찾으세요?\n손님: 검은색 가방 있어요?\n점원: 네, 있어요. 이거 어때요?\n손님: 예뻐요. 얼마예요?","q":"What does the customer want?","choices":["A bag","Shoes","A hat"],"answer":0},{"transcript":"엄마: 수진아, 오늘 날씨 어때?\n수진: 비가 와요. 그래서 우산을 가지고 가요.\n엄마: 조심해서 가.","q":"What is the weather like?","choices":["Sunny","Snowing","Raining"],"answer":2}]}};
+const { HANGUL, VOCAB, GRAMMAR, READING, LISTENING, MOCK } = DATA;
+
+// ===== STATE =====
+const state = {
+  view: 'home',
+  subView: null,
+  ttsRate: parseFloat(localStorage.getItem('ttsRate') || '0.9'),
+  ttsVoice: null,
+  streak: parseInt(localStorage.getItem('streak') || '0'),
+  lastActive: localStorage.getItem('lastActive') || '',
+  xp: parseInt(localStorage.getItem('xp') || '0'),
+  dailyGoal: 50,
+  dailyXp: parseInt(localStorage.getItem('dailyXp_' + today()) || '0'),
+  learnedVocab: JSON.parse(localStorage.getItem('learnedVocab') || '[]'),
+  learnedGrammar: JSON.parse(localStorage.getItem('learnedGrammar') || '[]'),
+  flashIdx: 0,
+  flashFlipped: false,
+  quizIdx: 0,
+  quizScore: 0,
+  quizQuestions: [],
+  quizAnswers: [],
+  mockSection: 0,
+  mockStarted: false,
+  mockAnswers: {},
+  mockResult: null,
+};
+
+function today(){
+  const d = new Date();
+  return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
+}
+function bumpStreak(){
+  const t = today();
+  if(state.lastActive === t) return;
+  const y = new Date(); y.setDate(y.getDate()-1);
+  const yStr = y.getFullYear()+'-'+(y.getMonth()+1)+'-'+y.getDate();
+  if(state.lastActive === yStr){
+    state.streak++;
+  } else if(state.lastActive === ''){
+    state.streak = 1;
+  } else {
+    state.streak = 1;
+  }
+  state.lastActive = t;
+  localStorage.setItem('streak', state.streak);
+  localStorage.setItem('lastActive', state.lastActive);
+}
+function addXp(n){
+  state.xp += n;
+  state.dailyXp += n;
+  localStorage.setItem('xp', state.xp);
+  localStorage.setItem('dailyXp_'+today(), state.dailyXp);
+  bumpStreak();
+}
+
+// ===== TTS (Web Speech API) =====
+let voices = [];
+function loadVoices(){
+  voices = window.speechSynthesis ? window.speechSynthesis.getVoices() : [];
+  // pick best korean voice
+  state.ttsVoice = voices.find(v=>/ko(-KR|_KR)?/i.test(v.lang)) || voices.find(v=>v.lang && v.lang.toLowerCase().startsWith('ko')) || null;
+}
+if(window.speechSynthesis){
+  loadVoices();
+  window.speechSynthesis.onvoiceschanged = loadVoices;
+}
+function speak(text, opts={}){
+  if(!window.speechSynthesis || !text) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'ko-KR';
+  if(state.ttsVoice) u.voice = state.ttsVoice;
+  u.rate = opts.rate || state.ttsRate;
+  u.pitch = opts.pitch || 1;
+  window.speechSynthesis.speak(u);
+}
+function stopSpeak(){
+  if(window.speechSynthesis) window.speechSynthesis.cancel();
+}
+function playMockListen(idx){
+  const text = (window.__mockListen && window.__mockListen[idx]) || '';
+  speak(text, { rate: 0.9 });
+}
+
+// ===== TOAST =====
+let toastTimer;
+function toast(msg){
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>el.classList.remove('show'), 2000);
+}
+
+// ===== SHEET (modal) =====
+function openSheet(html){
+  const bd = document.getElementById('sheetBackdrop');
+  const sh = document.getElementById('sheet');
+  sh.innerHTML = '<div class="grab"></div>' + html;
+  bd.classList.add('show');
+  bd.onclick = (e)=>{ if(e.target === bd) closeSheet(); };
+}
+function closeSheet(){
+  document.getElementById('sheetBackdrop').classList.remove('show');
+  stopSpeak();
+}
+
+// ===== ICONS (inline SVG) =====
+const IC = {
+  flame:'<svg viewBox="0 0 24 24" fill="none"><path d="M12 2s4 4 4 8a4 4 0 01-8 0c0-1 .5-2 1-3-2 1-3 3-3 5a6 6 0 0012 0c0-5-6-10-6-10z" fill="currentColor"/></svg>',
+  home:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8v9a2 2 0 01-2 2h-3v-7h-8v7H5a2 2 0 01-2-2v-9z" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  book:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5a2 2 0 012-2h12v16H6a2 2 0 00-2 2V5z M4 19a2 2 0 012-2h12" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  stats:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V10M10 20V4M16 20v-7" stroke-linecap="round"/></svg>',
+  gear:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 00.3 1.7l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.6 1.6 0 00-1.7-.3 1.6 1.6 0 00-1 1.5V21a2 2 0 11-4 0v-.1a1.6 1.6 0 00-1-1.5 1.6 1.6 0 00-1.7.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.6 1.6 0 00.3-1.7 1.6 1.6 0 00-1.5-1H3a2 2 0 110-4h.1a1.6 1.6 0 001.5-1 1.6 1.6 0 00-.3-1.7l-.1-.1a2 2 0 112.8-2.8l.1.1a1.6 1.6 0 001.7.3H9a1.6 1.6 0 001-1.5V3a2 2 0 114 0v.1a1.6 1.6 0 001 1.5 1.6 1.6 0 001.7-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.6 1.6 0 00-.3 1.7V9a1.6 1.6 0 001.5 1H21a2 2 0 110 4h-.1a1.6 1.6 0 00-1.5 1z" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  play:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>',
+  speaker:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H3v6h3l5 4V5z M15 9a3 3 0 010 6 M18 6a7 7 0 010 12" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  back:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  chev:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+};
+
+// ===== RENDER =====
+const app = document.getElementById('app');
+function render(){
+  let html = '';
+  if(state.view==='home') html = renderHome();
+  else if(state.view==='hangul') html = renderHangul();
+  else if(state.view==='vocab') html = renderVocab();
+  else if(state.view==='grammar') html = renderGrammar();
+  else if(state.view==='reading') html = renderReading();
+  else if(state.view==='listening') html = renderListening();
+  else if(state.view==='mock') html = renderMock();
+  else if(state.view==='stats') html = renderStats();
+  else if(state.view==='settings') html = renderSettings();
+  app.innerHTML = html;
+  // re-bind nav clicks
+  document.querySelectorAll('[data-nav]').forEach(el=>{
+    el.onclick = ()=>{ state.view = el.dataset.nav; state.subView=null; window.scrollTo(0,0); render(); };
+  });
+  document.querySelectorAll('[data-back]').forEach(el=>{
+    el.onclick = ()=>{ state.view = el.dataset.back; state.subView=null; window.scrollTo(0,0); render(); };
+  });
+  // post-render hooks per view
+  if(state.view==='home') bindHome();
+  else if(state.view==='hangul') bindHangul();
+  else if(state.view==='vocab') bindVocab();
+  else if(state.view==='grammar') bindGrammar();
+  else if(state.view==='reading') bindReading();
+  else if(state.view==='listening') bindListening();
+  else if(state.view==='mock') bindMock();
+  else if(state.view==='settings') bindSettings();
+  renderTabbar();
+}
+
+function topbar(title, sub){
+  return `<div class="topbar"><div><h1>${title}</h1>${sub?`<div class="sub">${sub}</div>`:''}</div><div class="streak-pill">${IC.flame}${state.streak}</div></div>`;
+}
+function subHeader(title){
+  return `<div class="topbar"><button class="tab" data-back="home" style="padding:6px 8px;color:var(--ink)">${IC.back}</button><div style="text-align:center;flex:1"><h1>${title}</h1></div><div style="width:36px"></div></div>`;
+}
+
+// ----- HOME -----
+function renderHome(){
+  const goalPct = Math.min(100, Math.round(state.dailyXp / state.dailyGoal * 100));
+  const hour = new Date().getHours();
+  const greet = hour<12?'Good morning':hour<18?'Good afternoon':'Good evening';
+  return `
+  ${topbar('TOPIK I', 'Korean · Beginner')}
+  <div class="greet">${greet} 👋</div>
+  <div class="greet-sub">Let's keep your streak alive. ${state.dailyXp >= state.dailyGoal ? "Today's goal done — 감사합니다!" : ''}</div>
+
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:baseline">
+      <div style="font-size:13px;font-weight:700;color:var(--ink-soft)">DAILY GOAL</div>
+      <div style="font-size:13px;font-weight:700">${state.dailyXp} / ${state.dailyGoal} XP</div>
+    </div>
+    <div class="goal-bar"><div class="goal-fill" style="width:${goalPct}%"></div></div>
+    <div class="goal-text"><span>Streak: ${state.streak} day${state.streak!==1?'s':''}</span><span>Earn ${Math.max(0,state.dailyGoal-state.dailyXp)} more to hit goal</span></div>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat"><div class="num">${state.xp}</div><div class="lbl">Total XP</div></div>
+    <div class="stat"><div class="num">${state.learnedVocab.length}</div><div class="lbl">Vocab</div></div>
+    <div class="stat"><div class="num">${state.learnedGrammar.length}</div><div class="lbl">Grammar</div></div>
+  </div>
+
+  <div class="section-title">Learn</div>
+  <div class="module-grid">
+    <button class="module" data-nav="hangul">
+      <div class="icon icon-hangul">가</div>
+      <div class="name">Hangul</div>
+      <div class="desc">Alphabet & sounds</div>
+    </button>
+    <button class="module" data-nav="vocab">
+      <div class="icon icon-vocab">단어</div>
+      <div class="name">Vocabulary</div>
+      <div class="desc">${VOCAB.length} TOPIK words</div>
+    </button>
+    <button class="module" data-nav="grammar">
+      <div class="icon icon-grammar">문법</div>
+      <div class="name">Grammar</div>
+      <div class="desc">${GRAMMAR.length} key points</div>
+    </button>
+    <button class="module" data-nav="reading">
+      <div class="icon icon-reading">읽기</div>
+      <div class="name">Reading</div>
+      <div class="desc">Short passages</div>
+    </button>
+    <button class="module" data-nav="listening">
+      <div class="icon icon-listening">듣기</div>
+      <div class="name">Listening</div>
+      <div class="desc">${LISTENING.length} dialogues</div>
+    </button>
+    <button class="module" data-nav="mock">
+      <div class="icon icon-mock">시험</div>
+      <div class="name">Mock Test</div>
+      <div class="desc">TOPIK I practice</div>
+    </button>
+  </div>
+
+  <div class="section-title">Tip of the day</div>
+  <div class="card">
+    <div style="font-size:14px;line-height:1.6">
+      <span class="ko" style="font-size:18px;font-weight:700">주세요</span> means "please give me". Use it when ordering: <span class="ko">물 주세요</span> (Water, please).
+    </div>
+  </div>
+
+  <div style="height:20px"></div>
+  `;
+}
+function bindHome(){}
+
+// ----- HANGUL -----
+let hgTab = 'consonants';
+function renderHangul(){
+  return `
+  ${subHeader('Hangul · 한글')}
+  <div style="padding:0 4px 4px;font-size:13px;color:var(--ink-soft)">Tap any character to hear it and see its name.</div>
+  <div class="chip-row" id="hgTabs">
+    <div class="chip ${hgTab==='consonants'?'active':''}" data-t="consonants">Consonants</div>
+    <div class="chip ${hgTab==='vowels'?'active':''}" data-t="vowels">Vowels</div>
+    <div class="chip ${hgTab==='tensed'?'active':''}" data-t="tensed">Tensed</div>
+    <div class="chip ${hgTab==='batchim'?'active':''}" data-t="batchim">Batchim</div>
+    <div class="chip ${hgTab==='syllablesIntro'?'active':''}" data-t="syllablesIntro">Syllables</div>
+  </div>
+  <div id="hgGrid"></div>
+  <div class="card" style="margin-top:14px">
+    <div style="font-size:13px;font-weight:700;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px">How syllable blocks work</div>
+    <div style="font-size:14px;line-height:1.6">Korean writes letters in square blocks: consonant + vowel (+ optional final consonant). <span class="ko" style="font-weight:700">ㄱ+ㅏ = 가</span>, <span class="ko" style="font-weight:700">ㅎ+ㅏ+ㄴ = 한</span>. An initial <span class="ko" style="font-weight:700">ㅇ</span> is silent — it just carries the vowel.</div>
+  </div>
+  <div style="height:20px"></div>
+  `;
+}
+function bindHangul(){
+  document.querySelectorAll('#hgTabs .chip').forEach(c=>{
+    c.onclick = ()=>{ hgTab = c.dataset.t; render(); };
+  });
+  const grid = document.getElementById('hgGrid');
+  if(hgTab==='batchim'){
+    grid.innerHTML = HANGUL.batchim.map(b=>`
+      <div class="card card-tight" style="margin-bottom:8px">
+        <div style="display:flex;align-items:center;gap:14px">
+          <div class="ko" style="font-size:34px;font-weight:700;width:48px;text-align:center">${b.end}</div>
+          <div style="flex:1">
+            <div style="font-size:14px;font-weight:700">/${b.sound}/</div>
+            <div style="font-size:12px;color:var(--ink-soft)">e.g. ${b.ex}</div>
+          </div>
+          <button class="tab" onclick="speak('${b.ex.split(' ')[0]}')" style="padding:8px;color:var(--pink-deep)">▶</button>
+        </div>
+      </div>`).join('');
+    return;
+  }
+  if(hgTab==='syllablesIntro'){
+    grid.innerHTML = '<div class="hg-grid">' + HANGUL.syllablesIntro.map(s=>`
+      <div class="hg-cell" data-letter="${s.block}" data-name="${s.parts + ' → ' + s.meaning}">
+        <div class="letter ko">${s.block}</div>
+        <div class="nm">${s.parts}</div>
+        <div class="rom">${s.meaning}</div>
+      </div>`).join('') + '</div>';
+  } else {
+    const arr = HANGUL[hgTab];
+    grid.innerHTML = '<div class="hg-grid">' + arr.map(c=>`
+      <div class="hg-cell" data-letter="${c.letter}" data-name="${c.name}" data-rom="${c.roman||''}" data-sound="${(c.sound||'').replace(/"/g,'&quot;')}">
+        <div class="letter ko">${c.letter}</div>
+        <div class="rom">${c.roman||(c.name)}</div>
+        <div class="nm">${c.name}</div>
+      </div>`).join('') + '</div>';
+  }
+  grid.querySelectorAll('.hg-cell').forEach(cell=>{
+    cell.onclick = ()=>{
+      const letter = cell.dataset.letter;
+      const name = cell.dataset.name;
+      const rom = cell.dataset.rom;
+      const sound = cell.dataset.sound;
+      speak(letter);
+      openSheet(`
+        <h2 class="ko">${letter}</h2>
+        <div class="big-rom">${rom||name}</div>
+        <div class="meta-row">${name}</div>
+        ${sound?`<div style="background:var(--accent-soft);border-radius:12px;padding:14px;font-size:14px;text-align:center;margin-bottom:14px">${sound}</div>`:''}
+        <button class="btn btn-accent" onclick="speak('${letter}')">▶ Play sound</button>
+        <button class="btn btn-ghost" style="margin-top:10px" onclick="closeSheet()">Close</button>
+      `);
+    };
+  });
+}
+
+// ----- VOCAB -----
+let vocabCat = 'All';
+function renderVocab(){
+  const cats = ['All', ...Array.from(new Set(VOCAB.map(v=>v.cat)))];
+  const list = vocabCat==='All' ? VOCAB : VOCAB.filter(v=>v.cat===vocabCat);
+  return `
+  ${subHeader('Vocabulary · 단어')}
+  <div style="padding:0 4px 4px;font-size:13px;color:var(--ink-soft)">Tap a word for details · tap ▶ to hear it.</div>
+  <div class="chip-row" id="vocabTabs">
+    ${cats.map(c=>`<div class="chip ${vocabCat===c?'active':''}" data-c="${c}">${c} (${c==='All'?VOCAB.length:VOCAB.filter(v=>v.cat===c).length})</div>`).join('')}
+  </div>
+  <div class="btn-row" style="margin:8px 0 12px">
+    <button class="btn btn-soft" id="flashBtn">🎴 Flashcards</button>
+    <button class="btn btn-soft" id="quizBtn">✍️ Quiz</button>
+  </div>
+  <div id="vocabList"></div>
+  <div style="height:20px"></div>
+  `;
+}
+function bindVocab(){
+  document.querySelectorAll('#vocabTabs .chip').forEach(c=>{
+    c.onclick = ()=>{ vocabCat = c.dataset.c; render(); };
+  });
+  document.getElementById('flashBtn').onclick = startVocabFlash;
+  document.getElementById('quizBtn').onclick = startVocabQuiz;
+  const list = document.getElementById('vocabList');
+  const items = vocabCat==='All' ? VOCAB : VOCAB.filter(v=>v.cat===vocabCat);
+  list.innerHTML = items.map((v,i)=>{
+    const learned = state.learnedVocab.includes(v.word);
+    return `
+    <div class="list-item" data-i="${i}">
+      <div style="flex:1">
+        <div class="title ko">${v.word} ${learned?'<span style="font-size:11px;color:#5BA67A">✓</span>':''}</div>
+        <div class="sub">${v.roman} — ${v.en}</div>
+      </div>
+      <button class="tab" onclick="event.stopPropagation();speak('${v.word}')" style="padding:8px;color:var(--pink-deep)">▶</button>
+    </div>`;
+  }).join('');
+  list.querySelectorAll('.list-item').forEach(li=>{
+    li.onclick = ()=>{
+      const v = items[parseInt(li.dataset.i)];
+      openVocabDetail(v);
+    };
+  });
+}
+function openVocabDetail(v){
+  speak(v.word);
+  const learned = state.learnedVocab.includes(v.word);
+  openSheet(`
+    <h2 class="ko">${v.word}</h2>
+    <div class="big-rom">${v.roman}</div>
+    <div class="meta-row">${v.cat}</div>
+    <div class="card-tight" style="background:var(--accent-soft);border:none;border-radius:12px;padding:14px;text-align:center;margin:10px 0">
+      <div style="font-size:18px;font-weight:700">${v.en}</div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-accent" onclick="speak('${v.word}')">▶ Hear</button>
+      <button class="btn ${learned?'btn-ghost':'btn-primary'}" id="markVocab" ${learned?'disabled':''}>${learned?'✓ Learned':'Mark learned'}</button>
+    </div>
+    <button class="btn btn-ghost" style="margin-top:10px" onclick="closeSheet()">Close</button>
+  `);
+  setTimeout(()=>{
+    const mb = document.getElementById('markVocab');
+    if(mb) mb.onclick = ()=>{
+      state.learnedVocab.push(v.word);
+      localStorage.setItem('learnedVocab', JSON.stringify(state.learnedVocab));
+      addXp(5);
+      toast('+5 XP · learned');
+      closeSheet();
+      render();
+    };
+  }, 50);
+}
+function startVocabFlash(){
+  const items = vocabCat==='All' ? VOCAB : VOCAB.filter(v=>v.cat===vocabCat);
+  if(!items.length) return;
+  state.flashIdx = 0;
+  state.flashFlipped = false;
+  showVocabFlash(items);
+}
+function showVocabFlash(items){
+  const v = items[state.flashIdx];
+  openSheet(`
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+      <div style="font-size:12px;font-weight:700;color:var(--ink-soft)">CARD ${state.flashIdx+1} / ${items.length}</div>
+      <button class="tab" onclick="closeSheet()" style="padding:4px 8px;color:var(--ink-soft)">✕</button>
+    </div>
+    <div class="progress"><div class="progress-fill" style="width:${(state.flashIdx+1)/items.length*100}%"></div></div>
+    <div class="flashcard" id="flashCard" style="position:relative">
+      <div class="tap-to-flip">tap to flip</div>
+      ${state.flashFlipped ? `
+        <div class="en">${v.en}</div>
+        <div class="rom" style="margin-top:8px">${v.roman}</div>
+      ` : `
+        <div class="ko">${v.word}</div>
+        <div class="rom">${v.roman}</div>
+        <div class="hint">Tap card to reveal meaning</div>
+      `}
+    </div>
+    <div class="btn-row" style="margin-top:14px">
+      <button class="btn btn-ghost" id="prevCard" ${state.flashIdx===0?'disabled':''}>← Prev</button>
+      <button class="btn btn-accent" id="speakCard">▶</button>
+      <button class="btn btn-primary" id="nextCard">Next →</button>
+    </div>
+  `);
+  document.getElementById('flashCard').onclick = ()=>{
+    state.flashFlipped = !state.flashFlipped;
+    showVocabFlash(items);
+  };
+  document.getElementById('speakCard').onclick = (e)=>{ e.stopPropagation(); speak(v.word); };
+  document.getElementById('prevCard').onclick = (e)=>{
+    e.stopPropagation();
+    if(state.flashIdx>0){ state.flashIdx--; state.flashFlipped=false; showVocabFlash(items); }
+  };
+  document.getElementById('nextCard').onclick = (e)=>{
+    e.stopPropagation();
+    if(!state.learnedVocab.includes(v.word)){
+      state.learnedVocab.push(v.word);
+      localStorage.setItem('learnedVocab', JSON.stringify(state.learnedVocab));
+      addXp(3);
+    }
+    if(state.flashIdx < items.length-1){
+      state.flashIdx++; state.flashFlipped=false; showVocabFlash(items);
+    } else {
+      toast('🎉 Deck done! +XP');
+      closeSheet(); render();
+    }
+  };
+}
+function startVocabQuiz(){
+  const items = vocabCat==='All' ? VOCAB.slice() : VOCAB.filter(v=>v.cat===vocabCat);
+  const shuffled = items.sort(()=>Math.random()-0.5).slice(0, Math.min(10, items.length));
+  state.quizQuestions = shuffled.map(v=>{
+    const wrongs = VOCAB.filter(x=>x.word!==v.word).sort(()=>Math.random()-0.5).slice(0,3);
+    const choices = [v, ...wrongs].sort(()=>Math.random()-0.5);
+    return { prompt: v.word, promptType:'ko', choices: choices.map(c=>c.en), answer: choices.findIndex(c=>c.word===v.word) };
+  });
+  state.quizIdx = 0;
+  state.quizScore = 0;
+  state.quizAnswers = [];
+  showVocabQuiz();
+}
+function showVocabQuiz(){
+  if(state.quizIdx >= state.quizQuestions.length){
+    const pct = Math.round(state.quizScore/state.quizQuestions.length*100);
+    addXp(state.quizScore*4);
+    openSheet(`
+      <h2>Quiz complete!</h2>
+      <div class="score-card" style="margin-top:14px">
+        <div class="big">${state.quizScore} / ${state.quizQuestions.length}</div>
+        <div class="lbl">Correct answers · +${state.quizScore*4} XP</div>
+        <div class="grade">${pct>=80?'Excellent':pct>=60?'Good job':'Keep practicing'}</div>
+      </div>
+      <button class="btn btn-accent" onclick="closeSheet();render()">Done</button>
+    `);
+    return;
+  }
+  const q = state.quizQuestions[state.quizIdx];
+  openSheet(`
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+      <div style="font-size:12px;font-weight:700;color:var(--ink-soft)">Q${state.quizIdx+1} / ${state.quizQuestions.length}</div>
+      <button class="tab" onclick="closeSheet()" style="padding:4px 8px;color:var(--ink-soft)">✕</button>
+    </div>
+    <div class="progress"><div class="progress-fill" style="width:${(state.quizIdx+1)/state.quizQuestions.length*100}%"></div></div>
+    <div class="quiz-q" style="text-align:center">
+      <div style="font-size:12px;color:var(--ink-soft);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px">What does this word mean?</div>
+      <div class="ko" style="font-size:36px;font-weight:800;margin:8px 0">${q.prompt}</div>
+      <button class="tab" onclick="speak('${q.prompt}')" style="padding:4px;color:var(--pink-deep);font-size:13px">▶ Hear</button>
+    </div>
+    <div class="quiz-choices" id="quizChoices">
+      ${q.choices.map((c,i)=>`<button class="choice" data-i="${i}">${c}</button>`).join('')}
+    </div>
+  `);
+  document.querySelectorAll('#quizChoices .choice').forEach(ch=>{
+    ch.onclick = ()=>{
+      const i = parseInt(ch.dataset.i);
+      document.querySelectorAll('#quizChoices .choice').forEach(c=>c.classList.add('disabled'));
+      if(i===q.answer){
+        ch.classList.add('correct'); state.quizScore++;
+      } else {
+        ch.classList.add('wrong');
+        document.querySelectorAll('#quizChoices .choice')[q.answer].classList.add('correct');
+      }
+      setTimeout(()=>{ state.quizIdx++; showVocabQuiz(); }, 900);
+    };
+  });
+}
+
+// ----- GRAMMAR -----
+function renderGrammar(){
+  return `
+  ${subHeader('Grammar · 문법')}
+  <div style="padding:0 4px 4px;font-size:13px;color:var(--ink-soft)">30 essential TOPIK I grammar points.</div>
+  ${GRAMMAR.map(g=>`
+    <div class="card card-tight" style="margin-bottom:10px;cursor:pointer" data-g="${g.id}">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start">
+        <div style="flex:1">
+          <div style="font-size:11px;color:var(--pink-deep);font-weight:700">#${g.id}</div>
+          <div style="font-size:15px;font-weight:700;margin:2px 0">${g.point}</div>
+          <div class="grammar-pattern">${g.pattern}</div>
+        </div>
+        ${state.learnedGrammar.includes(g.id)?'<span style="color:#5BA67A;font-size:14px">✓</span>':''}
+      </div>
+      <div style="font-size:13px;color:var(--ink-soft);margin-top:6px">${g.meaning}</div>
+    </div>`).join('')}
+  <div style="height:20px"></div>
+  `;
+}
+function bindGrammar(){
+  document.querySelectorAll('[data-g]').forEach(el=>{
+    el.onclick = ()=>{
+      const g = GRAMMAR.find(x=>x.id==el.dataset.g);
+      openGrammarDetail(g);
+    };
+  });
+}
+function openGrammarDetail(g){
+  openSheet(`
+    <div style="font-size:11px;color:var(--pink-deep);font-weight:700">GRAMMAR #${g.id}</div>
+    <h2>${g.point}</h2>
+    <div class="grammar-pattern">${g.pattern}</div>
+    <div style="font-size:14px;color:var(--ink-soft);margin:8px 0 4px">${g.meaning}</div>
+    <div class="h-card">EXAMPLE</div>
+    <div class="grammar-ex">
+      <div class="ko">${g.ex.split('(')[0].trim()}</div>
+      <div class="tr">${g.ex.match(/\(([^)]+)\)/)?.[1] || ''}</div>
+      <button class="tab" onclick="speak('${g.ex.split('(')[0].trim().replace(/\./g,'')}')" style="padding:6px 0;color:var(--pink-deep);font-size:12px;margin-top:6px">▶ Hear example</button>
+    </div>
+    <div class="h-card">RULE</div>
+    <div style="font-size:14px;line-height:1.6;background:#FBF0DC;border-radius:10px;padding:10px 12px">${g.rule}</div>
+    <div class="btn-row" style="margin-top:14px">
+      <button class="btn btn-ghost" onclick="closeSheet()">Close</button>
+      <button class="btn ${state.learnedGrammar.includes(g.id)?'btn-ghost':'btn-accent'}" ${state.learnedGrammar.includes(g.id)?'disabled':''} id="markGrammar">${state.learnedGrammar.includes(g.id)?'✓ Learned':'Mark learned'}</button>
+    </div>
+  `);
+  setTimeout(()=>{
+    const mb = document.getElementById('markGrammar');
+    if(mb) mb.onclick = ()=>{
+      state.learnedGrammar.push(g.id);
+      localStorage.setItem('learnedGrammar', JSON.stringify(state.learnedGrammar));
+      addXp(5);
+      toast('+5 XP · learned');
+      closeSheet(); render();
+    };
+  }, 50);
+}
+
+// ----- READING -----
+function renderReading(){
+  return `
+  ${subHeader('Reading · 읽기')}
+  <div style="padding:0 4px 4px;font-size:13px;color:var(--ink-soft)">Read short TOPIK I passages, then answer.</div>
+  ${READING.map((r,i)=>`
+    <div class="card card-tight" style="margin-bottom:10px;cursor:pointer" data-r="${i}">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <div style="font-size:11px;color:var(--pink-deep);font-weight:700;text-transform:uppercase;letter-spacing:0.06em">Passage ${i+1}</div>
+          <div style="font-size:16px;font-weight:700;margin-top:2px">${r.title}</div>
+        </div>
+        <div style="color:var(--ink-soft)">${IC.chev}</div>
+      </div>
+    </div>`).join('')}
+  <div style="height:20px"></div>
+  `;
+}
+function bindReading(){
+  document.querySelectorAll('[data-r]').forEach(el=>{
+    el.onclick = ()=>{
+      const r = READING[parseInt(el.dataset.r)];
+      openReadingDetail(r, parseInt(el.dataset.r));
+    };
+  });
+}
+function openReadingDetail(r, idx){
+  openSheet(`
+    <div style="font-size:11px;color:var(--pink-deep);font-weight:700;text-transform:uppercase;letter-spacing:0.06em">PASSAGE ${idx+1}</div>
+    <h2>${r.title}</h2>
+    <div class="card-tight" style="background:var(--accent-soft);border:none;border-radius:12px;padding:14px;margin:10px 0">
+      <div class="ko" style="font-size:16px;line-height:1.8;white-space:pre-line">${r.text}</div>
+    </div>
+    <div class="btn-row" style="margin-bottom:14px">
+      <button class="btn btn-soft" onclick="speak('${r.text.replace(/\n/g,' ')}')">▶ Read aloud</button>
+      <button class="btn btn-ghost" id="toggleTr">Show translation</button>
+    </div>
+    <div id="trBox" class="hidden" style="background:#EAF1FC;border-radius:12px;padding:14px;font-size:14px;line-height:1.6;white-space:pre-line;margin-bottom:14px">${r.en}</div>
+    <div class="h-card">COMPREHENSION</div>
+    <div id="readingQuiz"></div>
+    <button class="btn btn-ghost" style="margin-top:14px" onclick="closeSheet()">Close</button>
+  `);
+  setTimeout(()=>{
+    document.getElementById('toggleTr').onclick = ()=>{
+      document.getElementById('trBox').classList.toggle('hidden');
+    };
+    const qz = document.getElementById('readingQuiz');
+    qz.innerHTML = r.questions.map((q,qi)=>`
+      <div style="margin-bottom:14px">
+        <div style="font-size:14px;font-weight:700;margin-bottom:8px">${qi+1}. ${q.q}</div>
+        <div class="quiz-choices">
+          ${q.choices.map((c,i)=>`<button class="choice" data-q="${qi}" data-i="${i}">${c}</button>`).join('')}
+        </div>
+      </div>`).join('');
+    qz.querySelectorAll('.choice').forEach(ch=>{
+      ch.onclick = ()=>{
+        const qi = parseInt(ch.dataset.q);
+        const ci = parseInt(ch.dataset.i);
+        const q = r.questions[qi];
+        const group = qz.querySelectorAll(`[data-q="${qi}"]`);
+        group.forEach(c=>c.classList.add('disabled'));
+        if(ci===q.answer){
+          ch.classList.add('correct'); addXp(3);
+        } else {
+          ch.classList.add('wrong');
+          group[q.answer].classList.add('correct');
+        }
+      };
+    });
+  }, 50);
+}
+
+// ----- LISTENING -----
+let listenSpeed = 0.9;
+function renderListening(){
+  return `
+  ${subHeader('Listening · 듣기')}
+  <div style="padding:0 4px 4px;font-size:13px;color:var(--ink-soft)">Play dialogues via on-device Korean TTS, then answer.</div>
+  ${LISTENING.map((l,i)=>`
+    <div class="card card-tight" style="margin-bottom:10px;cursor:pointer" data-l="${i}">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <div style="font-size:11px;color:var(--pink-deep);font-weight:700;text-transform:uppercase;letter-spacing:0.06em">Dialogue ${i+1}</div>
+          <div style="font-size:16px;font-weight:700;margin-top:2px">${l.title}</div>
+        </div>
+        <div style="color:var(--ink-soft)">${IC.chev}</div>
+      </div>
+    </div>`).join('')}
+  <div style="height:20px"></div>
+  `;
+}
+function bindListening(){
+  document.querySelectorAll('[data-l]').forEach(el=>{
+    el.onclick = ()=>{
+      const l = LISTENING[parseInt(el.dataset.l)];
+      openListeningDetail(l, parseInt(el.dataset.l));
+    };
+  });
+}
+function openListeningDetail(l, idx){
+  const plain = l.transcript.replace(/^[^:]+: /gm,'').replace(/\n/g,' ');
+  openSheet(`
+    <div style="font-size:11px;color:var(--pink-deep);font-weight:700;text-transform:uppercase;letter-spacing:0.06em">DIALOGUE ${idx+1}</div>
+    <h2>${l.title}</h2>
+    <div class="player">
+      <button class="play-btn" id="listenPlay">▶</button>
+      <div style="font-size:12px;color:var(--ink-soft)">Tap to play dialogue (ko-KR TTS)</div>
+      <div class="speed-row">
+        <button data-s="0.7" class="${listenSpeed===0.7?'active':''}">0.7x</button>
+        <button data-s="0.9" class="${listenSpeed===0.9?'active':''}">0.9x</button>
+        <button data-s="1.0" class="${listenSpeed===1.0?'active':''}">1.0x</button>
+      </div>
+    </div>
+    <div class="btn-row" style="margin-bottom:14px">
+      <button class="btn btn-ghost" id="toggleTranscript">Show transcript</button>
+      <button class="btn btn-ghost" id="toggleTr2">Show translation</button>
+    </div>
+    <div id="transcriptBox" class="transcript hidden">${l.transcript.split('\n').map(line=>{const m=line.match(/^([가-힣]+):/);return m?`<div><span class="speaker">${m[1]}:</span>${line.slice(m[0].length)}</div>`:`<div>${line}</div>`;}).join('')}</div>
+    <div id="trBox2" class="transcript hidden" style="background:#EAF1FC;border-color:#D6E4F7">${l.en}</div>
+    <div class="h-card">COMPREHENSION</div>
+    <div id="listenQuiz"></div>
+    <button class="btn btn-ghost" style="margin-top:14px" onclick="closeSheet()">Close</button>
+  `);
+  setTimeout(()=>{
+    document.getElementById('listenPlay').onclick = ()=>{
+      speak(plain, { rate: listenSpeed });
+    };
+    document.querySelectorAll('.speed-row button').forEach(b=>{
+      b.onclick = ()=>{ listenSpeed = parseFloat(b.dataset.s); document.querySelectorAll('.speed-row button').forEach(x=>x.classList.remove('active')); b.classList.add('active'); };
+    });
+    document.getElementById('toggleTranscript').onclick = ()=>{ document.getElementById('transcriptBox').classList.toggle('hidden'); };
+    document.getElementById('toggleTr2').onclick = ()=>{ document.getElementById('trBox2').classList.toggle('hidden'); };
+    const qz = document.getElementById('listenQuiz');
+    qz.innerHTML = l.questions.map((q,qi)=>`
+      <div style="margin-bottom:14px">
+        <div style="font-size:14px;font-weight:700;margin-bottom:8px">${qi+1}. ${q.q}</div>
+        <div class="quiz-choices">
+          ${q.choices.map((c,i)=>`<button class="choice" data-q="${qi}" data-i="${i}">${c}</button>`).join('')}
+        </div>
+      </div>`).join('');
+    qz.querySelectorAll('.choice').forEach(ch=>{
+      ch.onclick = ()=>{
+        const qi = parseInt(ch.dataset.q);
+        const ci = parseInt(ch.dataset.i);
+        const q = l.questions[qi];
+        const group = qz.querySelectorAll(`[data-q="${qi}"]`);
+        group.forEach(c=>c.classList.add('disabled'));
+        if(ci===q.answer){ ch.classList.add('correct'); addXp(3); }
+        else { ch.classList.add('wrong'); group[q.answer].classList.add('correct'); }
+      };
+    });
+  }, 50);
+}
+
+// ----- MOCK TEST -----
+function renderMock(){
+  if(state.mockResult){
+    const r = state.mockResult;
+    return `
+    ${subHeader('Mock Test · 결과')}
+    <div class="score-card">
+      <div class="big">${r.total}</div>
+      <div class="lbl">out of ${r.max} · ${r.percent}%</div>
+      <div class="grade">${r.grade}</div>
+    </div>
+    <div class="card">
+      <div style="font-size:13px;font-weight:700;color:var(--ink-soft);margin-bottom:8px">BREAKDOWN</div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0"><span>Vocab & Grammar</span><strong>${r.vg} / ${MOCK.vocabGrammar.length}</strong></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0"><span>Reading</span><strong>${r.rd} / ${MOCK.reading.length}</strong></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0"><span>Listening</span><strong>${r.ls} / ${MOCK.listening.length}</strong></div>
+    </div>
+    <div class="btn-row" style="margin-top:10px">
+      <button class="btn btn-ghost" onclick="state.mockResult=null;state.mockAnswers={};state.mockSection=0;state.mockStarted=true;render()">Review</button>
+      <button class="btn btn-accent" id="retryMock">Retry test</button>
+    </div>
+    <div style="height:20px"></div>
+    `;
+  }
+  if(!state.mockStarted){
+    return `
+    ${subHeader('Mock Test · 시험')}
+    <div class="card">
+      <div style="font-size:14px;line-height:1.7">This TOPIK I-style mock test has 3 sections: <strong>Vocabulary & Grammar (${MOCK.vocabGrammar.length} Q)</strong>, <strong>Reading (${MOCK.reading.length} Q)</strong>, and <strong>Listening (${MOCK.listening.length} Q)</strong>. Total: <strong>${MOCK.vocabGrammar.length+MOCK.reading.length+MOCK.listening.length} questions</strong>.</div>
+    </div>
+    <div class="card">
+      <div style="font-size:13px;font-weight:700;color:var(--ink-soft);margin-bottom:8px">HOW IT WORKS</div>
+      <div style="font-size:14px;line-height:1.7">Answer each question, then move to the next section. Listening questions use on-device Korean TTS — make sure your sound is on.</div>
+    </div>
+    <button class="btn btn-accent" id="startMock">Start test →</button>
+    <div style="height:20px"></div>
+    `;
+  }
+  const sections = ['vocabGrammar','reading','listening'];
+  const sec = sections[state.mockSection];
+  const total = MOCK.vocabGrammar.length + MOCK.reading.length + MOCK.listening.length;
+  const answered = Object.keys(state.mockAnswers).length;
+  const sectionMeta = {
+    vocabGrammar: { title: 'Section 1 · Vocabulary & Grammar', data: MOCK.vocabGrammar, type:'plain' },
+    reading: { title: 'Section 2 · Reading', data: MOCK.reading, type:'reading' },
+    listening: { title: 'Section 3 · Listening', data: MOCK.listening, type:'listening' },
+  };
+  const meta = sectionMeta[sec];
+  return `
+  ${subHeader('Mock Test')}
+  <div style="font-size:11px;font-weight:700;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.06em;margin:6px 2px 6px">${meta.title}</div>
+  <div class="progress"><div class="progress-fill" style="width:${answered/total*100}%"></div></div>
+  <div style="font-size:12px;color:var(--ink-soft);margin-bottom:14px">${answered} / ${total} answered</div>
+  ${meta.data.map((item,i)=>{
+    const qid = sec+'_'+i;
+    const ans = state.mockAnswers[qid];
+    if(meta.type==='plain'){
+      return `
+      <div class="card card-tight" style="margin-bottom:10px">
+        <div style="font-size:14px;font-weight:700;margin-bottom:10px">${i+1}. ${item.q}</div>
+        <div class="quiz-choices">
+          ${item.choices.map((c,ci)=>`<button class="choice ${ans===ci?'correct':''}" data-qid="${qid}" data-i="${ci}">${c}</button>`).join('')}
+        </div>
+      </div>`;
+    } else if(meta.type==='reading'){
+      return `
+      <div class="card card-tight" style="margin-bottom:10px">
+        <div style="font-size:12px;color:var(--pink-deep);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px">Q${i+1}</div>
+        <div class="ko" style="background:var(--accent-soft);border-radius:10px;padding:10px 12px;font-size:14px;line-height:1.7;margin-bottom:8px">${item.text}</div>
+        <button class="tab" onclick="speak('${item.text}')" style="padding:4px 0;color:var(--pink-deep);font-size:12px;margin-bottom:8px">▶ Listen</button>
+        <div style="font-size:14px;font-weight:600;margin-bottom:8px">${item.q}</div>
+        <div class="quiz-choices">
+          ${item.choices.map((c,ci)=>`<button class="choice ${ans===ci?'correct':''}" data-qid="${qid}" data-i="${ci}">${c}</button>`).join('')}
+        </div>
+      </div>`;
+    } else {
+      // Store the cleaned transcript in a lookup so the inline onclick stays a plain string.
+      window.__mockListen = window.__mockListen || [];
+      const plain = item.transcript.replace(/^[^:]+: /gm,'').replace(/\n/g,' ');
+      const storeIdx = window.__mockListen.push(plain) - 1;
+      return `
+      <div class="card card-tight" style="margin-bottom:10px">
+        <div style="font-size:12px;color:var(--pink-deep);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px">Q${i+1}</div>
+        <div class="player" style="padding:14px;margin-bottom:8px">
+          <button class="play-btn" style="width:48px;height:48px;font-size:20px" onclick="playMockListen(${storeIdx})">▶</button>
+          <div style="font-size:11px;color:var(--ink-soft);margin-top:6px">Tap to listen</div>
+        </div>
+        <div style="font-size:14px;font-weight:600;margin-bottom:8px">${item.q}</div>
+        <div class="quiz-choices">
+          ${item.choices.map((c,ci)=>`<button class="choice ${ans===ci?'correct':''}" data-qid="${qid}" data-i="${ci}">${c}</button>`).join('')}
+        </div>
+      </div>`;
+    }
+  }).join('')}
+  <button class="btn btn-accent" id="nextSection">${state.mockSection<2?'Next section →':'Finish & see score'}</button>
+  <div style="height:20px"></div>
+  `;
+}
+function bindMock(){
+  const startBtn = document.getElementById('startMock');
+  if(startBtn) startBtn.onclick = ()=>{ state.mockStarted=true; state.mockSection=0; render(); };
+  document.querySelectorAll('#app .choice[data-qid]').forEach(ch=>{
+    ch.onclick = ()=>{
+      const qid = ch.dataset.qid;
+      const i = parseInt(ch.dataset.i);
+      const prev = state.mockAnswers[qid];
+      state.mockAnswers[qid] = i;
+      // re-render to reflect selection
+      render();
+    };
+  });
+  const nextBtn = document.getElementById('nextSection');
+  if(nextBtn) nextBtn.onclick = ()=>{
+    if(state.mockSection < 2){ state.mockSection++; render(); window.scrollTo(0,0); }
+    else finishMock();
+  };
+  const retry = document.getElementById('retryMock');
+  if(retry) retry.onclick = ()=>{
+    state.mockResult=null; state.mockAnswers={}; state.mockSection=0; state.mockStarted=true; render();
+  };
+}
+function finishMock(){
+  const ans = state.mockAnswers;
+  let vg=0, rd=0, ls=0;
+  MOCK.vocabGrammar.forEach((q,i)=>{ if(ans['vocabGrammar_'+i]===q.answer) vg++; });
+  MOCK.reading.forEach((q,i)=>{ if(ans['reading_'+i]===q.answer) rd++; });
+  MOCK.listening.forEach((q,i)=>{ if(ans['listening_'+i]===q.answer) ls++; });
+  const total = vg+rd+ls;
+  const max = MOCK.vocabGrammar.length + MOCK.reading.length + MOCK.listening.length;
+  const percent = Math.round(total/max*100);
+  const grade = percent>=80?'Level 2 ready':percent>=60?'Level 1 ready':'Keep practicing';
+  state.mockResult = { total, max, percent, grade, vg, rd, ls };
+  addXp(total*5);
+  render();
+  window.scrollTo(0,0);
+}
+
+// ----- STATS -----
+function renderStats(){
+  const vocabPct = Math.round(state.learnedVocab.length/VOCAB.length*100);
+  const gramPct = Math.round(state.learnedGrammar.length/GRAMMAR.length*100);
+  return `
+  ${subHeader('Progress · 통계')}
+  <div class="card">
+    <div style="font-size:13px;font-weight:700;color:var(--ink-soft);margin-bottom:6px">VOCABULARY</div>
+    <div style="font-size:28px;font-weight:800;letter-spacing:-0.02em">${state.learnedVocab.length} <span style="font-size:14px;color:var(--ink-soft);font-weight:600">/ ${VOCAB.length}</span></div>
+    <div class="goal-bar"><div class="goal-fill" style="width:${vocabPct}%"></div></div>
+    <div class="goal-text"><span>${vocabPct}% learned</span></div>
+  </div>
+  <div class="card">
+    <div style="font-size:13px;font-weight:700;color:var(--ink-soft);margin-bottom:6px">GRAMMAR</div>
+    <div style="font-size:28px;font-weight:800;letter-spacing:-0.02em">${state.learnedGrammar.length} <span style="font-size:14px;color:var(--ink-soft);font-weight:600">/ ${GRAMMAR.length}</span></div>
+    <div class="goal-bar"><div class="goal-fill" style="width:${gramPct}%"></div></div>
+    <div class="goal-text"><span>${gramPct}% learned</span></div>
+  </div>
+  <div class="stats-grid">
+    <div class="stat"><div class="num">${state.xp}</div><div class="lbl">Total XP</div></div>
+    <div class="stat"><div class="num">${state.streak}</div><div class="lbl">Day streak</div></div>
+    <div class="stat"><div class="num">${state.dailyXp}</div><div class="lbl">Today XP</div></div>
+  </div>
+  <div class="section-title">By category</div>
+  <div class="card">
+    ${Array.from(new Set(VOCAB.map(v=>v.cat))).map(cat=>{
+      const total = VOCAB.filter(v=>v.cat===cat).length;
+      const learned = VOCAB.filter(v=>v.cat===cat && state.learnedVocab.includes(v.word)).length;
+      const pct = Math.round(learned/total*100);
+      return `
+        <div style="margin-bottom:14px">
+          <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:600;margin-bottom:4px"><span>${cat}</span><span style="color:var(--ink-soft)">${learned}/${total}</span></div>
+          <div class="goal-bar"><div class="goal-fill" style="width:${pct}%"></div></div>
+        </div>`;
+    }).join('')}
+  </div>
+  <div style="height:20px"></div>
+  `;
+}
+
+// ----- SETTINGS -----
+function renderSettings(){
+  return `
+  ${subHeader('Settings · 설정')}
+  <div class="card">
+    <div class="setting-row">
+      <div>
+        <div class="lbl">TTS voice</div>
+        <div class="desc">${state.ttsVoice ? state.ttsVoice.name + ' (' + state.ttsVoice.lang + ')' : 'ko-KR (system default)'}</div>
+      </div>
+      <button class="btn btn-soft" style="width:auto;padding:8px 14px;font-size:12px" onclick="speak('안녕하세요. 만나서 반갑습니다.')">Test</button>
+    </div>
+    <div class="setting-row">
+      <div>
+        <div class="lbl">Speech rate</div>
+        <div class="desc">Slower helps beginners</div>
+      </div>
+      <div style="display:flex;gap:6px">
+        ${[0.7,0.8,0.9,1.0].map(r=>`<button class="chip ${state.ttsRate===r?'active':''}" data-rate="${r}">${r}</button>`).join('')}
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="setting-row">
+      <div>
+        <div class="lbl">Daily XP goal</div>
+        <div class="desc">Currently ${state.dailyGoal} XP</div>
+      </div>
+      <div style="display:flex;gap:6px">
+        ${[30,50,100].map(g=>`<button class="chip ${state.dailyGoal===g?'active':''}" data-goal="${g}">${g}</button>`).join('')}
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="setting-row">
+      <div>
+        <div class="lbl">Streak</div>
+        <div class="desc">${state.streak} day${state.streak!==1?'s':''} · last active ${state.lastActive||'today'}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="setting-row">
+      <div>
+        <div class="lbl" style="color:#C26666">Reset progress</div>
+        <div class="desc">Clears XP, streak, learned items</div>
+      </div>
+      <button class="btn btn-ghost" style="width:auto;padding:8px 14px;font-size:12px;color:#C26666;border-color:#C26666" id="resetBtn">Reset</button>
+    </div>
+  </div>
+
+  <div class="card" style="text-align:center;font-size:12px;color:var(--ink-soft)">
+    <div style="font-weight:700;color:var(--ink);margin-bottom:4px">TOPIK I Korean</div>
+    <div>v1.0 · On-device TTS · Works offline once loaded</div>
+    <div style="margin-top:6px">Add to Home Screen from Safari Share menu for app-like experience.</div>
+  </div>
+  <div style="height:20px"></div>
+  `;
+}
+function bindSettings(){
+  document.querySelectorAll('[data-rate]').forEach(b=>{
+    b.onclick = ()=>{
+      state.ttsRate = parseFloat(b.dataset.rate);
+      localStorage.setItem('ttsRate', state.ttsRate);
+      render();
+    };
+  });
+  document.querySelectorAll('[data-goal]').forEach(b=>{
+    b.onclick = ()=>{
+      state.dailyGoal = parseInt(b.dataset.goal);
+      localStorage.setItem('dailyGoal', state.dailyGoal);
+      render();
+    };
+  });
+  const rb = document.getElementById('resetBtn');
+  if(rb) rb.onclick = ()=>{
+    if(confirm('Reset all progress? This cannot be undone.')){
+      localStorage.clear();
+      state.xp=0; state.streak=0; state.dailyXp=0; state.learnedVocab=[]; state.learnedGrammar=[]; state.lastActive=''; state.ttsRate=0.9;
+      toast('Progress reset');
+      render();
+    }
+  };
+}
+
+// ----- TAB BAR -----
+function renderTabbar(){
+  let tb = document.querySelector('.tabbar');
+  if(!tb){
+    tb = document.createElement('div');
+    tb.className = 'tabbar';
+    document.body.appendChild(tb);
+  }
+  const tabs = [
+    { id:'home', label:'Home', icon:IC.home },
+    { id:'vocab', label:'Vocab', icon:IC.book },
+    { id:'grammar', label:'Grammar', icon:IC.book },
+    { id:'stats', label:'Stats', icon:IC.stats },
+    { id:'settings', label:'Settings', icon:IC.gear },
+  ];
+  tb.innerHTML = tabs.map(t=>`
+    <button class="tab ${state.view===t.id?'active':''}" data-tab="${t.id}">
+      ${t.icon}
+      <span>${t.label}</span>
+    </button>`).join('');
+  tb.querySelectorAll('[data-tab]').forEach(b=>{
+    b.onclick = ()=>{
+      state.view = b.dataset.tab;
+      state.subView = null;
+      window.scrollTo(0,0);
+      render();
+    };
+  });
+}
+
+// ===== INIT =====
+bumpStreak();
+render();
+</script>
+</body>
+</html>
